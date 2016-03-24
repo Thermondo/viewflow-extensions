@@ -48,8 +48,6 @@ setup(
         "Framework :: Django :: 1.8",
         "Framework :: Django :: 1.9",
     ],
-    install_requires=[
-        'django-viewflow',
-    ],
+    install_requires=[],
     zip_safe=False,
 )
