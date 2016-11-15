@@ -30,7 +30,7 @@ install:
   - if [[ $TRAVIS_PYTHON_VERSION == 2* ]] || [[ $TRAVIS_PYTHON_VERSION == pypy ]]; then pip install python-memcached; fi
   - if [[ $TRAVIS_PYTHON_VERSION == 3* ]] || [[ $TRAVIS_PYTHON_VERSION == pypy3 ]]; then pip install python3-memcached; fi
   - pip install $DJANGO
-  - pip install https://github.com/viewflow/viewflow/archive/master.zip#egg=django-viewflow
+  - pip install -U django-viewflow
   - pip install coveralls
   - sh -e /etc/init.d/xvfb start
 script:
