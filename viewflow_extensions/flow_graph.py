@@ -1,4 +1,5 @@
 import functools
+from typing import Type
 
 import graphviz as gv
 from viewflow import flow
@@ -49,7 +50,7 @@ class FlowGraph(object):
         Obsolete: {'style': 'invis'},
     }
 
-    def __init__(self, flow_cls: Flow, **attrs):
+    def __init__(self, flow_cls: Type[Flow], **attrs):
         self.flow_cls = flow_cls
         self.attrs = attrs
 
