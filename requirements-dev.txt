@@ -15,7 +15,7 @@ click==6.6                # via pip-tools
 docutils==0.12            # via sphinx
 first==2.0.1              # via pip-tools
 flake8==3.2.1
-graphviz==0.5.1
+graphviz==0.5.2
 isort==4.2.5
 Jinja2==2.8               # via sphinx
 kombu==4.0.0             # via celery
