@@ -36,7 +36,7 @@ pytz==2016.10              # via babel, celery
 six==1.10.0               # via pip-tools, sphinx, sphinxcontrib-spelling
 snowballstemmer==1.2.1    # via sphinx
 sphinx-rtd-theme==0.1.9   # via sphinx
-sphinx==1.5
+sphinx==1.5.1
 sphinxcontrib-spelling==2.3.0
 tox==2.5.0
 virtualenv==15.1.0        # via tox
