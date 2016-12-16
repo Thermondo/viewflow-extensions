@@ -10,7 +10,7 @@ amqp==2.1.4               # via kombu
 anyjson==0.3.3            # via kombu
 babel==2.3.4              # via sphinx
 billiard==3.5.0.2        # via celery
-celery==4.0.1
+celery==4.0.2
 click==6.6                # via pip-tools
 docutils==0.13.1            # via sphinx
 first==2.0.1              # via pip-tools
@@ -18,7 +18,7 @@ flake8==3.2.1
 graphviz==0.5.2
 isort==4.2.5
 Jinja2==2.8               # via sphinx
-kombu==4.0.1             # via celery
+kombu==4.0.2             # via celery
 MarkupSafe==0.23          # via jinja2
 mccabe==0.5.3
 pep8-naming==0.4.1
