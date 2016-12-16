@@ -16,4 +16,4 @@ singledispatch==3.4.0.3   # via django-viewflow
 six==1.10.0               # via mock, singledispatch, webtest
 waitress==1.0.1           # via webtest
 WebOb==1.6.3              # via webtest
-webtest==2.0.23           # via django-viewflow, django-webtest
+webtest==2.0.24           # via django-viewflow, django-webtest
