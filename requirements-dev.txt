@@ -28,7 +28,7 @@ pluggy==0.4.0             # via tox
 py==1.4.32                # via pytest, tox
 pydocstyle==1.1.1
 pyenchant==1.6.8
-pyflakes==1.3.0           # via flake8
+pyflakes==1.4.0           # via flake8
 Pygments==2.1.3           # via sphinx
 pytest-django==3.1.2
 pytest==3.0.5
