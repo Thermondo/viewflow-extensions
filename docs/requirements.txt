@@ -9,7 +9,7 @@ django-filter==1.0.1     # via django-viewflow
 django-fsm==2.4.0         # via django-viewflow
 django-viewflow==0.10.1
 django-webtest==1.8.0     # via django-viewflow
-Django==1.10.4             # via django-viewflow
+Django==1.10.5             # via django-viewflow
 mock==2.0.0               # via django-viewflow
 pbr==1.10.0               # via mock
 singledispatch==3.4.0.3   # via django-viewflow
