@@ -11,7 +11,7 @@ anyjson==0.3.3            # via kombu
 babel==2.3.4              # via sphinx
 billiard==3.5.0.2        # via celery
 celery==4.0.2
-click==6.6                # via pip-tools
+click==6.7 # via pip-tools
 docutils==0.13.1            # via sphinx
 first==2.0.1              # via pip-tools
 flake8==3.2.1
