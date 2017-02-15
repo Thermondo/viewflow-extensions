@@ -5,7 +5,12 @@ import importlib
 from django.core.management import BaseCommand, CommandError
 from django.utils.six import text_type
 
-from viewflow_extensions.flow_graph import FlowGraph
+try:
+    from viewflow import chart
+    PRO = True
+except ImportError:
+    PRO = False
+    from viewflow_extensions.flow_graph import FlowGraph
 
 
 class Command(BaseCommand):
@@ -48,10 +53,19 @@ class Command(BaseCommand):
             raise CommandError("Could not find file %s" % (file_path, ))
         except (AttributeError, TypeError):
             raise CommandError("Could not find the flow with the name %s" % (flow_name, ))
-
-        flow_graph = FlowGraph(flow_cls)
-        graph = flow_graph.create_diagraph()
-        if options.get('svg'):
-            graph.render(filename='{}'.format(flow_path[0]))
+        if PRO:
+            grid = chart.calc_layout_data(flow_cls)
+            svg = chart.grid_to_svg(grid)
+            if options.get('svg'):
+                svg_file_path = '{}.svg'.format(flow_path[0])
+                with open(svg_file_path, 'w') as fs:
+                    fs.write(svg)
+            else:
+                self.stdout.write(svg)
         else:
-            self.stdout.write(text_type(graph))
+            flow_graph = FlowGraph(flow_cls)
+            graph = flow_graph.create_diagraph()
+            if options.get('svg'):
+                graph.render(filename='{}'.format(flow_path[0]))
+            else:
+                self.stdout.write(text_type(graph))

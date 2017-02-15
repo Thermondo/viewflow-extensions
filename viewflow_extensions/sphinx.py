@@ -26,15 +26,28 @@ from tempfile import mkdtemp
 from viewflow.base import Flow
 
 from . import __version__ as version
-from .flow_graph import FlowGraph
+
+try:
+    from viewflow import chart
+    PRO = True
+except ImportError:
+    PRO = False
+    from .flow_graph import FlowGraph
 
 
 def process_flows(app, what, name, obj, options, lines):
     if inspect.isclass(obj) and issubclass(obj, Flow):
-        flow_graph = FlowGraph(flow_cls=obj)
-        graph = flow_graph.create_diagraph()
         tmp_dir = mkdtemp()
-        svg_file_path = graph.render(filename=os.path.join(tmp_dir, obj._meta.flow_label))
+        if PRO:
+            grid = chart.calc_layout_data(obj)
+            svg = chart.grid_to_svg(grid)
+            svg_file_path = os.path.join(tmp_dir, '%s.svg' % obj._meta.flow_label)
+            with open(svg_file_path, 'w') as fs:
+                fs.write(svg)
+        else:
+            flow_graph = FlowGraph(flow_cls=obj)
+            graph = flow_graph.create_diagraph()
+            svg_file_path = graph.render(filename=os.path.join(tmp_dir, obj._meta.flow_label))
         lines.append('.. image:: /{}'.format(svg_file_path))
     return lines
 

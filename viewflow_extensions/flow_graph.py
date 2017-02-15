@@ -3,12 +3,15 @@ import functools
 import graphviz as gv
 from viewflow import flow
 from viewflow.base import Flow
-from viewflow.contrib import celery
 
 try:
     from viewflow.flow.obsolete import Obsolete
-except ImportError:
+    from viewflow.contrib.celery import Job
+except ImportError:  # Pro only
     class Obsolete(Flow):
+        pass
+
+    class Job(Flow):
         pass
 
 
@@ -44,7 +47,7 @@ class FlowGraph(object):
         flow.StartSignal: {'shape': 'doublecircle', 'xlabel': True, 'label': ''},
         flow.Signal:  {'shape': 'doublecircle', 'xlabel': True, 'label': ''},
         flow.Start: {'shape': 'circle', 'xlabel': True, 'label': ''},
-        celery.Job:  {'shape': 'circle', 'xlabel': True, 'label': 'C'},
+        Job:  {'shape': 'circle', 'xlabel': True, 'label': 'C'},
         Obsolete: {'style': 'invis'},
     }
 
