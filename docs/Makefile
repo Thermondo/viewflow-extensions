@@ -44,6 +44,11 @@ clean:
 apidoc:
 	sphinx-apidoc --separate --force --module-first -H "Viewflow Extensions"  -o . ../viewflow_extensions/ ../**/migrations
 
+spelling:
+	$(SPHINXBUILD) -b spelling -W $(ALLSPHINXOPTS) $(BUILDDIR)/spelling
+	@echo
+	@echo "Spell check finished. The results are in $(BUILDDIR)/spelling."
+
 html:
 	$(SPHINXBUILD) -b html $(ALLSPHINXOPTS) $(BUILDDIR)/html
 	@echo

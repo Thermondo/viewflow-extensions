@@ -57,6 +57,7 @@ def linkcode_resolve(domain, info):
     return ("https://github.com/%s/%s/blob/%s/%s.py%s" %
             (github_user, project, head, filename, lineno))
 
+
 intersphinx_mapping = {
     'python': ('http://docs.python.org/3.5', None),
     'django': ('https://docs.djangoproject.com/en/stable/',

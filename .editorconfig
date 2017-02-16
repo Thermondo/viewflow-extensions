@@ -19,7 +19,7 @@ combine_as_imports = true
 skip = wsgi.py,docs,.tox,env
 known_first_party = viewflow_extensions,tests
 known_third_party = django
-
+default_section = THIRDPARTY
 
 [*.{rst,ini}]
 indent_style = space

@@ -1,16 +1,12 @@
--e .
-flake8
-pep8-naming
-mccabe
-isort
-pydocstyle
 pytest
 pytest-django
 sphinx
 sphinxcontrib-spelling
 pyenchant
-pip-tools
 tox
 graphviz
 celery
 sphinx
+django-webtest
+pip-tools
+coverage

@@ -15,6 +15,7 @@ INSTALLED_APPS = (
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.staticfiles',
+    'django.contrib.messages',
 
     'viewflow',
     'viewflow_extensions',
@@ -58,11 +59,3 @@ TEMPLATES = [
 SECRET_KEY = '123456'
 
 USE_L10N = True
-
-if os.environ.get('TRAVIS'):
-    CACHES = {
-        'default': {
-            'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
-            'LOCATION': 'localhost:11211',
-        }
-    }

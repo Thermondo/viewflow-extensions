@@ -1,43 +1,49 @@
 language: python
 sudo: false
 cache:
-  - apt
-  - pip
-services:
-  - memcached
+- pip
+- apt
 python:
-  - "3.4"
-  - "3.5"
+- '3.5'
+- '3.6'
 addons:
   apt:
     packages:
-      - python3-enchant
-      - graphviz
+    - python3-enchant
+    - graphviz
 env:
   global:
-    - DISPLAY=:99.0
+  - secure: FVRqI/JMa6eiq+HHMRdDnAUNo8/B5DhjD3waUm8D/A6n6+N8kbbD0ejdsABRA1eQBgZ9Poxc86pUkArxseDufR+bayp/vZnld6vtZn1vbxMgfMFtPyxXdkoZQHfu68BXZ+eCZW0Qm3SzV/PlEJpy3EvlklbY6IPtZZxCPYAdwUuCKLjYF5jvsSUfbF1dw+9nKJ3HVtstM00D7opk0zGIfNuSX2dJ3Z4jBK+4BlLJe3kDsy78n+TTS/tqeWGr+RflWai5tQzwfzda7EmsrX+0Cuqz2eOk0e/2ipn5f//F1YhKaNt8Lt1M7qMUYbjSYpo2zArJz6eVKkG31jtaCkC13tmVACmpbYLB0ISSAoA5TfHtCM9Y9aSfbJDp0O86z+yVKNYEKBYGPcPMq0hnksUwEVTu+gl5OUZOX251Ee9dPdeXEwKgKx+IStqJyipBmoTyyCfGWk1uNUxA141rnB55NOEO3k9ASLWGckwY/eycIu7f/5AsyB1S5Yf4GvytEuJ5zkRuV2RSIU2H41PccuvIKzZMmPTV2kf01KazbTuEcr0WZw1x/rE8FeFLpH20/ujhm67JhtRprXh0Qnt0HMWB+xd3MqVxfT2/AN+ZWiBbkRCAZ1p9cnfggJVIuWPx8GTJRFt0zCRkDPIOZHsULnGw+y63O4mTt7aUdKuKrQnklwQ=
   matrix:
-    - DJANGO="Django<1.9,>=1.8"
-    - DJANGO="Django<1.10,>=1.9"
-    - DJANGO="-e git+https://github.com/django/django.git@master#egg=Django"
+  - TOXENV=isort
+  - TOXENV=docs
+  - DJANGO=18
+  - DJANGO=19
+  - DJANGO=110
+  - DJANGO=master
 matrix:
   fast_finish: true
   allow_failures:
-    - env: DJANGO="-e git+https://github.com/django/django.git@master#egg=Django"
+  - env: DJANGO=master
 install:
-  - pip install --upgrade pip
-  - pip install -r requirements-dev.txt
-  - if [[ $TRAVIS_PYTHON_VERSION == 2* ]] || [[ $TRAVIS_PYTHON_VERSION == pypy ]]; then pip install python-memcached; fi
-  - if [[ $TRAVIS_PYTHON_VERSION == 3* ]] || [[ $TRAVIS_PYTHON_VERSION == pypy3 ]]; then pip install python3-memcached; fi
-  - pip install $DJANGO
-  - pip install -U django-viewflow
-  - pip install coveralls
-  - sh -e /etc/init.d/xvfb start
+- pip install --upgrade pip tox
+- pip install -U coveralls
+before_script:
+- |
+  if [[ -z $TOXENV ]]; then
+    export TOXENV=py$(echo $TRAVIS_PYTHON_VERSION | sed -e 's/\.//g')-dj$DJANGO
+  fi
+- echo $TOXENV
 script:
-  - isort --check-only --recursive --diff .
-  - flake8 --jobs=2 .
-  - pydocstyle --explain --source --count django_extensions
-  - (cd docs; make spelling)
-  - coverage run --source=viewflow_extensions -m py.test
+- tox -e $TOXENV
 after_success:
-  - coveralls
+- coveralls
+deploy:
+  provider: pypi
+  user: codingjoe
+  password:
+    secure: YMPSTcVWQ6jS13AKbdw5yY2hTRtoH41j4vPtSaLKYl2+TKh+fTMnLvjMT6oK3m190Igv5EC5x2N54m3FXDC/XB9Y4+suFmzIjLkvlOJj5uZssmIwfiHeRya66aVXLwIr48WO2HTJ6ulhmBeqR3KYdldK035NhI3A2Kor3k0yjofv2/xHfGQBhB14CFEfqsxEvbbFcZlF4ffW12Iy2yR05A3bk7LTry6Qn/E1WQfHcUbYosqdBqZdO9Iwb7oFJH3sqb1qhIkAk/Al2xHpe0Oq86BE3HnXnZHpnxFNjS+DBnMh3xUs2QAXtp2UVVTFphyHTZ4atWjzAjc+PRfvSNRkW0DqtcsFJ0oXPGpiOsfseeKkSd2Rui9imim+H97wdKm43SMdTN9f4E12ZlNGLa9ALZwsy6nXCW01Z2nJOc83DE+cZxNR1eO6RCN6QGXSmosv3IABhlmzdndx3BRxc79Hy2XSA+jXAhtcMvudklSrM54NSFQNzdHv+N14BcgLMxtnPxgivDbXyZphnJUP45krKdGcr5Kl7ksF7t0KeQa9Do+iQmfxh8+/F2g8sOOwRv6fNRiQg0vMd3BVg0+ZFmtk6k7h6ypcp8WO9YSxJCQSse5ql86PsWoDXFoosg5xqgXNAw0E3mBXwhV9FW7RiWMhnqCb52twkEgeYdI7l/cYYNE=
+  on:
+    tags: true
+    distributions: sdist bdist_wheel
+    repo: Thermondo/viewflow-extensions

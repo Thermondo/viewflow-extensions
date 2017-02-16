@@ -4,8 +4,6 @@
 {% block content %}
 <h1>{{ activation.flow_task }}</h1>
 
-{% include_process_data activation.process %}
-
 <form role="form" method="POST">
     {% csrf_token %}
     {{ form.as_p }}

@@ -66,7 +66,7 @@ class FlowGraph(object):
             return [getattr(node, '_on_true'), getattr(node, '_on_false')]
 
         if isinstance(node, flow.Switch) or isinstance(node, flow.Split):
-            branches = getattr(node, 'branches')
+            branches = getattr(node, '_branches')
             return [b[0] for b in branches]
 
         if hasattr(node, '_next'):

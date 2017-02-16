@@ -4,7 +4,7 @@ Views for view nodes that add additional behavior.
 .. inheritance-diagram:: viewflow_extensions.views
     :parts: 1
 """
-from viewflow.activation import STATUS, Activation
+from viewflow.activation import STATUS
 
 
 class SavableViewActivationMixin:
@@ -13,9 +13,9 @@ class SavableViewActivationMixin:
 
     Usage::
 
-        from viewflow.views import ProcessView
+        from viewflow.flow.views import ProcessUpdateView
 
-        class MyCustomView(SavableViewMixin, ProcessView):
+        class MyCustomView(SavableViewMixin, ProcessUpdateView):
             pass
 
     All you have to do is to add a new submit button with the name
@@ -29,10 +29,11 @@ class SavableViewActivationMixin:
 
     """
 
-    @Activation.status.transition(source=STATUS.PREPARED, target=STATUS.ASSIGNED)
     def save_task(self):
         """Transition to save the task and return to ``ASSIGNED`` state."""
-        self.task.save()
+        task = self.request.activation.task
+        task.status = STATUS.ASSIGNED
+        task.save()
 
     def activation_done(self, *args, **kwargs):
         """Complete the activation or save only, depending on form submit."""
@@ -40,11 +41,6 @@ class SavableViewActivationMixin:
             self.save_task()
         else:
             super().activation_done(*args, **kwargs)
-
-    def message_complete(self):
-        """Disable complete messages if the task was only saved."""
-        if '_save' not in self.request.POST:
-            super().message_complete()
 
     def get_success_url(self):
         """Stay at the same page, if the task was only saved."""

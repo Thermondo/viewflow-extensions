@@ -27,6 +27,7 @@ class Command(BaseCommand):
     .. note:: This extensions requires ``graphviz`` to be installed.
 
     """
+
     help = 'Create graph for the given flow.'
 
     def add_arguments(self, parser):

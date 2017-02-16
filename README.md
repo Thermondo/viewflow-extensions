@@ -7,7 +7,7 @@
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/Thermondo/viewflow-extensions?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 # Viewflow Extensions
-Useful extensions for django-viewflow
+Useful extensions for django-viewflow-pro
 
 ## Installation
 
@@ -16,6 +16,8 @@ Simply install the latest stable package using the command
 `pip install viewflow-extensions`
 
 and add `'viewflow_extensions'` to `INSTALLED_APP`s in your settings.py, that's it!
+
+**Note: This package officially only supports viewflow PRO. The free version might work too.**
 
 ## Documentation
 The latest documentation can be found at [Read the Docs](http://viewflow-extensions.rtfd.org/).
