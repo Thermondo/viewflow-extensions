@@ -5,7 +5,7 @@
 #    pip-compile requirements-dev.in
 #
 -e .
-alabaster==0.7.9          # via sphinx
+alabaster==0.7.10          # via sphinx
 amqp==2.1.4               # via kombu
 anyjson==0.3.3            # via kombu
 babel==2.3.4              # via sphinx
