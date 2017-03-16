@@ -13,9 +13,9 @@ class SavableViewActivationMixin:
 
     Usage::
 
-        from viewflow.flow.views import ProcessUpdateView
+        from viewflow.flow.views import UpdateProcessView
 
-        class MyCustomView(SavableViewMixin, ProcessUpdateView):
+        class MyCustomView(SavableViewMixin, UpdateProcessView):
             pass
 
     All you have to do is to add a new submit button with the name
