@@ -16,7 +16,7 @@ Jinja2==2.9.5
 kombu==4.0.2
 MarkupSafe==1.0
 packaging==16.8
-pip-tools==1.8.0
+pip-tools==1.8.1
 pluggy==0.4.0
 py==1.4.33
 pyenchant==1.6.8
