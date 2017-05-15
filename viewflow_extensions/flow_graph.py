@@ -30,6 +30,7 @@ class FlowGraph(object):
 
     Args:
         flow_cls: a subclass of .viewflow.base.Flow
+
     """
 
     node_attrs = {
@@ -61,6 +62,7 @@ class FlowGraph(object):
 
         Returns:
             List[Node]: a list of all children nodes of the given node.
+
         """
         if isinstance(node, flow.If):
             return [getattr(node, '_on_true'), getattr(node, '_on_false')]
@@ -79,6 +81,7 @@ class FlowGraph(object):
 
         Returns:
             List[Node]: A list of all nodes in the flow class.
+
         """
         return {
             getattr(self.flow_cls, item): item
@@ -99,6 +102,7 @@ class FlowGraph(object):
         Returns:
             List[Node]: A list of list of tuples that consists of all the connections
                 between the nodes in the flow.
+
         """
         edges = []
         for node, name in self.node_list.items():
