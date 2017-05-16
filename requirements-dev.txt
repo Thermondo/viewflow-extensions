@@ -10,7 +10,7 @@ coverage==4.4.1
 django-webtest==1.9.1
 docutils==0.13.1
 first==2.0.1
-graphviz==0.7
+graphviz==0.7.1
 imagesize==0.7.1
 Jinja2==2.9.6
 kombu==4.0.2
