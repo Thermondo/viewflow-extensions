@@ -3,7 +3,7 @@ amqp==2.2.1
 appdirs==1.4.3
 babel==2.4.0
 beautifulsoup4==4.6.0
-billiard==3.5.0.2
+billiard==3.5.0.3
 celery==4.0.2
 click==6.7
 coverage==4.4.1
