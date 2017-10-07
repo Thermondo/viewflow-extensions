@@ -9,7 +9,7 @@ from viewflow.activation import STATUS
 
 class SavableViewActivationMixin:
     """
-    Add save option to `.viewflow.flow.ManagedViewActivation` activations.
+    Add save option to `.viewflow.flow.ManagedViewActivation`.
 
     Usage::
 
