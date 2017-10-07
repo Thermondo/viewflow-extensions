@@ -36,7 +36,7 @@ class SavableViewActivationMixin:
         task.save()
 
     def activation_done(self, *args, **kwargs):
-        """Complete the activation or save only, depending on form submit."""
+        """Complete the ``activation`` or save only, depending on form submit."""
         if '_save' in self.request.POST:
             self.save_task()
         else:
