@@ -35,7 +35,7 @@ vine==1.1.4
 virtualenv==15.1.0
 waitress==1.1.0
 WebOb==1.7.3
-webtest==2.0.28
+webtest==2.0.29
 
 # The following packages are considered to be unsafe in a requirements file:
 # setuptools
