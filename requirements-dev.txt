@@ -28,7 +28,7 @@ pytz==2017.2
 requests==2.18.4
 six==1.11.0
 snowballstemmer==1.2.1
-sphinx==1.6.4
+sphinx==1.6.5
 sphinxcontrib-spelling==4.0.1
 tox==2.9.1
 vine==1.1.4
