@@ -3,4 +3,4 @@ from viewflow.models import Process
 
 
 class SavableProcess(Process):
-    text = models.TextField(blank=True)
+    text = models.TextField()
