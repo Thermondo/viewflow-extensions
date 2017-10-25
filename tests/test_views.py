@@ -37,7 +37,7 @@ class TestSavableViewActivationMixin:
         with FlowTest(SavableFlow, namespace='savable') as flow:
             flow.Task(SavableFlow.start).User('admin').Execute() \
                 .Assert(lambda p: p.created is not None, 'Process did not start.')
-            flow.Task(SavableFlow.savable_task).User('admin').Execute({'text': 'asdf',}) \
+            flow.Task(SavableFlow.savable_task).User('admin').Execute({'text': 'asdf'}) \
                 .Assert(lambda p: p.finished, 'Process is not finished.')
 
     @pytest.mark.django_db
@@ -50,5 +50,5 @@ class TestSavableViewActivationMixin:
             flow.Task(SavableFlow.start).User('admin').Execute() \
                 .Assert(lambda p: p.created is not None, 'Process did not start.')
             with pytest.raises(AssertionError):
-                flow.Task(SavableFlow.savable_task).User('admin').Execute({'text': '',}) \
+                flow.Task(SavableFlow.savable_task).User('admin').Execute({'text': ''}) \
                     .Assert(lambda p: p.finished, 'Process is not finished.')
