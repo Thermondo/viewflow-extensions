@@ -39,8 +39,7 @@ class SavableViewActivationMixin:
         """If the task was only saved, treat all form fields as not required."""
         form_class = super().get_form_class()
         if self._save:
-            for field in form_class.base_fields.values():
-                field.required = False
+            return make_form_class_without_required_fields(form_class)
         return form_class
 
     def save_task(self):
@@ -61,3 +60,17 @@ class SavableViewActivationMixin:
         if self._save:
             return self.request.get_full_path()
         return super().get_success_url()
+
+
+def make_form_class_without_required_fields(form_class):
+
+    class NoRequiredFieldsForm(form_class):
+
+        required_fields = []
+
+        def __init__(self, *args, **kwargs):
+            super().__init__(*args, **kwargs)
+            for field in self.fields.values():
+                field.required = False
+
+    return NoRequiredFieldsForm
