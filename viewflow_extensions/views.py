@@ -29,6 +29,20 @@ class SavableViewActivationMixin:
 
     """
 
+    _save = False
+
+    def post(self, request, *args, **kwargs):
+        self._save = True if '_save' in request.POST else False
+        return super().post(request, *args, **kwargs)
+
+    def get_form(self, form_class=None):
+        """If the task was only saved, treat all form fields as not required."""
+        form = super().get_form(form_class)
+        if self._save:
+            for field in form.fields.values():
+                field.required = False
+        return form
+
     def save_task(self):
         """Transition to save the task and return to ``ASSIGNED`` state."""
         task = self.request.activation.task
@@ -37,13 +51,13 @@ class SavableViewActivationMixin:
 
     def activation_done(self, *args, **kwargs):
         """Complete the ``activation`` or save only, depending on form submit."""
-        if '_save' in self.request.POST:
+        if self._save:
             self.save_task()
         else:
             super().activation_done(*args, **kwargs)
 
     def get_success_url(self):
         """Stay at the same page, if the task was only saved."""
-        if '_save' in self.request.POST:
+        if self._save:
             return self.request.get_full_path()
         return super().get_success_url()
