@@ -4,7 +4,6 @@ sphinx
 sphinxcontrib-spelling
 pyenchant
 tox
-graphviz
 celery
 sphinx
 django-webtest
