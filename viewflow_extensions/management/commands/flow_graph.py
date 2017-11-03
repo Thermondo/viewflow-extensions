@@ -8,12 +8,7 @@ SVG = 'svg'
 
 
 class Command(BaseCommand):
-    """
-    Create graphs from the path to flow class using graphviz.
-
-    .. note:: This extensions requires ``graphviz`` to be installed.
-
-    """
+    """Create graphs from the path to flow class."""
 
     help = 'Create graph for the given flow.'
 
