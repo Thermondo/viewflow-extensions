@@ -11,10 +11,6 @@ Example::
         'viewflow_extensions.sphinx',
     ]
 
-
-.. note:: This extensions requires ``graphviz`` to be installed
-    as well as the Sphinx extension ``sphinx.ext.autodoc`` to be enabled.
-
 """
 import inspect
 import os

@@ -26,10 +26,10 @@ class TestFlowGraph:
 
     def test_bpmn(self):
         with StringIO() as stdout:
-            call_command('flow_graph', '--type=svg', self.flow_path, stdout=stdout)
+            call_command('flow_graph', '--type=bpmn', self.flow_path, stdout=stdout)
             stdout.seek(0)
             graph = stdout.read()
-        assert '<svg xmlns="http://www.w3.org/2000/svg" ' in graph
+        assert '<?xml version="1.0" encoding="UTF-8"?>\n<bpmn:definitions' in graph
 
     def test_output(self):
         file_name = os.path.join(tempfile.mkdtemp(), 'test.svg')
@@ -47,6 +47,12 @@ class TestFlowGraph:
         """Test exceptions"""
         with pytest.raises(CommandError):
             call_command('flow_graph', "wrong_path.TestFlow")
+
+        with pytest.raises(CommandError):
+            call_command('flow_graph', "tests.testapp.flows.WrongFlow")
+
+        with pytest.raises(CommandError):
+            call_command('flow_graph', "wrong_path")
 
         with pytest.raises(CommandError):
             call_command('flow_graph', "--type='does-not-exist'")
