@@ -25,15 +25,16 @@ from . import __version__ as version
 def process_flows(app, what, name, obj, options, lines):
     if inspect.isclass(obj) and issubclass(obj, Flow):
         tmp_dir = mkdtemp()
-        file_name = os.path.join(tmp_dir, obj._meta.flow_label)
+        file_name = "%s.svg" % obj._meta.flow_label
+        svg_file_path = os.path.join(tmp_dir, file_name)
 
         grid = chart.calc_layout_data(obj)
         svg = chart.grid_to_svg(grid)
-        svg_file_path = "%s.svg" % file_name
         with open(svg_file_path, 'w') as f:
             f.write(svg)
         lines.append('.. image:: /{}'.format(svg_file_path))
-        lines.append('   :target: /{}'.format(svg_file_path))
+        lines.append('   :alt: {} flow graph'.format(obj._meta.flow_label))
+        lines.append('   :target: /_images/{}'.format(file_name))
     return lines
 
 
