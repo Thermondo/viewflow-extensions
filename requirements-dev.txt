@@ -1,27 +1,26 @@
 alabaster==0.7.10
 amqp==2.2.2
-appdirs==1.4.3
 babel==2.5.1
 beautifulsoup4==4.6.0
 billiard==3.5.0.3
 celery==4.1.0
+certifi==2017.7.27.1
+chardet==3.0.4
 click==6.7
 coverage==4.4.2
 django-webtest==1.9.2
 docutils==0.14
 first==2.0.1
-graphviz==0.8.1
+idna==2.6
 imagesize==0.7.1
 Jinja2==2.9.6
 kombu==4.1.0
 MarkupSafe==1.0
-packaging==16.8
 pip-tools==1.10.1
 pluggy==0.5.2
 py==1.4.34
 pyenchant==1.6.11
 Pygments==2.2.0
-pyparsing==2.2.0
 pytest-django==3.1.2
 pytest==3.2.3
 pytz==2017.3
@@ -30,12 +29,11 @@ six==1.11.0
 snowballstemmer==1.2.1
 sphinx==1.6.5
 sphinxcontrib-spelling==4.0.1
+sphinxcontrib-websupport==1.0.1
 tox==2.9.1
+urllib3==1.22
 vine==1.1.4
 virtualenv==15.1.0
 waitress==1.1.0
 WebOb==1.7.3
 webtest==2.0.29
-
-# The following packages are considered to be unsafe in a requirements file:
-# setuptools

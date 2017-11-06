@@ -1,9 +1,6 @@
 """
 Sphinx extension to automatically render BPMN graphs of Flows.
 
-Viewflow-Extensions comes with a Sphinx extensions that render BPMN graphs as SVG
-and automatically attaches them to the documentation of each flow.
-
 To enable this feature simply add ``viewflow_extensions.sphinx`` to your Sphinx configuration.
 
 Example::
@@ -14,28 +11,29 @@ Example::
         'viewflow_extensions.sphinx',
     ]
 
-
-.. note:: This extensions requires ``graphviz`` to be installed
-    as well as the Sphinx extension ``sphinx.ext.autodoc`` to be enabled.
-
 """
 import inspect
 import os
 from tempfile import mkdtemp
 
+from viewflow import chart
 from viewflow.base import Flow
 
 from . import __version__ as version
-from .flow_graph import FlowGraph
 
 
 def process_flows(app, what, name, obj, options, lines):
     if inspect.isclass(obj) and issubclass(obj, Flow):
-        flow_graph = FlowGraph(flow_cls=obj)
-        graph = flow_graph.create_diagraph()
         tmp_dir = mkdtemp()
-        svg_file_path = graph.render(filename=os.path.join(tmp_dir, obj._meta.flow_label))
+        file_name = os.path.join(tmp_dir, obj._meta.flow_label)
+
+        grid = chart.calc_layout_data(obj)
+        svg = chart.grid_to_svg(grid)
+        svg_file_path = "%s.svg" % file_name
+        with open(svg_file_path, 'w') as f:
+            f.write(svg)
         lines.append('.. image:: /{}'.format(svg_file_path))
+        lines.append('   :target: /{}'.format(svg_file_path))
     return lines
 
 
