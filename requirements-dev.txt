@@ -13,7 +13,7 @@ docutils==0.14
 first==2.0.1
 idna==2.6
 imagesize==0.7.1
-Jinja2==2.9.6
+Jinja2==2.10
 kombu==4.1.0
 MarkupSafe==1.0
 pip-tools==1.10.1
