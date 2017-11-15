@@ -6,5 +6,3 @@ These are extensions for Django_ Viewflow_.
 .. _Viewflow: http://github.com/viewflow/viewflow/
 
 """
-
-__version__ = "1.1.0"
