@@ -19,8 +19,6 @@ from tempfile import mkdtemp
 from viewflow import chart
 from viewflow.base import Flow
 
-from . import __version__ as version
-
 
 def process_flows(app, what, name, obj, options, lines):
     if inspect.isclass(obj) and issubclass(obj, Flow):
@@ -39,4 +37,4 @@ def process_flows(app, what, name, obj, options, lines):
 
 def setup(app):
     app.connect('autodoc-process-docstring', process_flows)
-    return {'version': version, 'parallel_read_safe': True}
+    return {'parallel_read_safe': True}

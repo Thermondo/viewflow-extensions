@@ -80,16 +80,6 @@ master_doc = 'index'
 project = 'Viewflow Extensions'
 copyright = '%s, Thermondo GmbH' % year
 
-
-def get_version():
-    import viewflow_extensions
-
-    return viewflow_extensions.__version__
-
-
-version = get_version()
-release = version
-
 exclude_patterns = ['_build']
 
 pygments_style = 'sphinx'
