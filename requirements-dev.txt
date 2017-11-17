@@ -6,5 +6,5 @@ pyenchant
 tox
 celery
 sphinx
-django-webtest
+django-webtest==1.9.2
 coverage
