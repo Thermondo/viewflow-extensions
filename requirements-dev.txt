@@ -7,4 +7,4 @@ tox
 celery
 sphinx
 django-webtest
-coverage
+coverage==4.4.2
