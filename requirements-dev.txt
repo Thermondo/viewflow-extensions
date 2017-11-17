@@ -1,10 +1,10 @@
 pytest
 pytest-django
-sphinx
+sphinx==1.6.5
 sphinxcontrib-spelling
 pyenchant
 tox
 celery
-sphinx
+sphinx==1.6.5
 django-webtest
 coverage
