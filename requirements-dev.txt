@@ -1,4 +1,4 @@
-pytest
+pytest==3.2.5
 pytest-django
 sphinx
 sphinxcontrib-spelling
