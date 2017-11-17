@@ -2,7 +2,7 @@ pytest
 pytest-django
 sphinx
 sphinxcontrib-spelling
-pyenchant
+pyenchant==1.6.11
 tox
 celery
 sphinx
