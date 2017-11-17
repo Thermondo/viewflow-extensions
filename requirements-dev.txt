@@ -3,7 +3,7 @@ pytest-django
 sphinx
 sphinxcontrib-spelling
 pyenchant
-tox
+tox==2.9.1
 celery
 sphinx
 django-webtest
