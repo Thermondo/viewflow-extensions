@@ -4,8 +4,9 @@ Views for view nodes that add additional behavior.
 .. inheritance-diagram:: viewflow_extensions.views
     :parts: 1
 """
-from django.forms.formsets import BaseFormSet
 from viewflow.activation import STATUS
+
+from .utils import make_form_or_formset_fields_not_required
 
 
 class SavableViewActivationMixin:
@@ -40,11 +41,7 @@ class SavableViewActivationMixin:
         """If the task was only saved, treat all form fields as not required."""
         form = super().get_form(form_class)
         if self._save:
-            if isinstance(form, BaseFormSet):
-                for single_form in form:
-                    _make_fields_not_required(single_form)
-            else:
-                _make_fields_not_required(form)
+            make_form_or_formset_fields_not_required(form)
         return form
 
     def save_task(self):
@@ -65,8 +62,3 @@ class SavableViewActivationMixin:
         if self._save:
             return self.request.get_full_path()
         return super().get_success_url()
-
-
-def _make_fields_not_required(form):
-    for field in form.fields.values():
-        field.required = False
