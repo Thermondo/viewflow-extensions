@@ -6,6 +6,8 @@ Views for view nodes that add additional behavior.
 """
 from viewflow.activation import STATUS
 
+from .utils import make_form_or_formset_fields_not_required
+
 
 class SavableViewActivationMixin:
     """
@@ -39,8 +41,7 @@ class SavableViewActivationMixin:
         """If the task was only saved, treat all form fields as not required."""
         form = super().get_form(form_class)
         if self._save:
-            for field in form.fields.values():
-                field.required = False
+            make_form_or_formset_fields_not_required(form)
         return form
 
     def save_task(self):
