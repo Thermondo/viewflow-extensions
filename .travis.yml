@@ -17,6 +17,7 @@ env:
   - TOXENV=isort
   - TOXENV=docs
   - DJANGO=111
+  - DJANGO=20
   - DJANGO=master
 matrix:
   fast_finish: true
