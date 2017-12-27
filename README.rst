@@ -4,6 +4,7 @@ Viewflow Extensions
 ===================
 
 Useful extensions for ``django-viewflow-pro``.
+Supports Django 1.11/2.0, Python 3.6.
 
 Installation
 ------------
