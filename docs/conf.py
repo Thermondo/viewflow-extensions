@@ -8,8 +8,6 @@ import os
 
 import django
 
-on_rtd = os.environ.get('READTHEDOCS', None) == 'True'
-
 year = datetime.datetime.now().strftime("%Y")
 
 sys.path.append(os.path.join(os.path.dirname(os.path.abspath(__file__)), os.pardir))
@@ -59,7 +57,7 @@ def linkcode_resolve(domain, info):
 
 
 intersphinx_mapping = {
-    'python': ('http://docs.python.org/3.5', None),
+    'python': ('http://docs.python.org/3', None),
     'django': ('https://docs.djangoproject.com/en/stable/',
                'https://docs.djangoproject.com/en/stable/_objects/'),
     'viewflow': ('https://viewflow.readthedocs.io/en/latest/', None),
@@ -105,7 +103,5 @@ inheritance_node_attrs = dict(shape='rect', fontsize=14, fillcolor='gray90',
 
 inheritance_edge_attrs = dict(penwidth=0.75)
 
-if on_rtd:
-    html_theme = 'default'
-else:
-    html_theme = 'sphinx_rtd_theme'
+
+html_theme = 'sphinx_rtd_theme'
